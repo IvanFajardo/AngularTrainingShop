@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import db from '../../../../../db.json';
+import db from '../../../../db.json';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/selectors/selectors';
-import * as fromSelectors from '../../../store/selectors';
-import * as fromActions from '../../../store/actions';
+import * as fromSelectors from '../../store/selectors';
+import * as fromActions from '../../store/actions';
 import { Router } from '@angular/router';
 
 @Component({
