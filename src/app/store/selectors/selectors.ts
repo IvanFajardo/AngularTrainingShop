@@ -9,9 +9,5 @@ export interface State {
   appState: AppState
 }
 
-export const reducers = {
-  userState: fromUsers.userReducer,
-}
-
 export const getAppState = createFeatureSelector<AppState>('appState')
 

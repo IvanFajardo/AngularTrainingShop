@@ -8,8 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromSelectors from './store/selectors/selectors'
+import * as fromReducers from './store/reducers/reducers'
 import { UserEffects } from './store/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(fromSelectors.reducers),
+    StoreModule.forRoot(fromReducers.reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-      logOnly: false, // Restrict extension to log-only mode
+      logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
     EffectsModule.forRoot([UserEffects])
