@@ -18,6 +18,13 @@ export const _userReducer = createReducer(
       ...state,
       user,
     };
+  }),
+  on(fromActions.CLEAR_USER_STATE, (state) => {
+    sessionStorage.removeItem('user')
+    return {
+      ...state,
+      user:null
+    }
   })
 );
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent } from './Shared Components/header/header.component';
 import { LoginComponent } from './Shared Components/login-page/login.component';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: LoginComponent, //replace component
+    component: HeaderComponent, //replace component
   },
 ];
 
