@@ -14,7 +14,7 @@
   </div>
   <div class="pull-right col-center">
     <div class="cart">
-      <button class="glyphicon glyphicon-shopping-cart reverse"  ></button>
+      <button class="glyphicon glyphicon-shopping-cart reverse" (click)="openCart()" ></button>
       <span [style.visibility]="cartItems === 0 ? 'hidden':'visible'" class="cart-number">{{cartItems}}</span>
     </div>
     <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
