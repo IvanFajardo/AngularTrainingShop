@@ -12,12 +12,15 @@ import { UserEffects } from './store/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { HeaderComponent } from './Shared Components/header/header.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CartModalComponent } from './Shared Components/cart-modal/cart-modal.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    CartModalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { HeaderComponent } from './Shared Components/header/header.component';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([UserEffects]),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

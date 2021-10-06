@@ -1,0 +1,41 @@
+.empty {
+  color: rgb(182, 180, 180)
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border: solid 1px rgb(212, 212, 212);
+}
+
+.td-img {
+  padding: 4px;
+  margin: 4px;
+}
+
+td:nth-child(2) {
+  font-size: 18px;
+}
+
+.modal-body {
+  overflow-y:scroll;
+  height: 70vh;
+}
+
+.form-control {
+  vertical-align: bottom;
+}
+
+.input-group {
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.y-middle {
+  vertical-align: middle;
+}
+input {
+  padding: 0;
+  font-size: 14px;
+}
