@@ -3,7 +3,11 @@ import { Store } from '@ngrx/store';
 import { Product } from 'src/app/models/Product';
 import { Cart } from 'src/app/models/Cart';
 import { Router } from '@angular/router';
-import { getProducts } from 'src/app/store/actions/product.actions';
+import {
+  getProducts,
+  updateProducts,
+  sortProducts,
+} from 'src/app/store/actions/product.actions';
 import {
   addToCart,
   deleteFromCart,
@@ -48,7 +52,7 @@ export class HomePageComponent implements OnInit {
 
     //Variable declarations to retrieve the values in prodVal and cartVal given the id of the product
     let prodVal = this.prodState.find((x: { id: number }) => x.id === id);
-    let cartVal: Cart = this.cartState.find((x: { id: number }) => x.id === id);
+    let cartVal = this.cartState.find((x: { id: number }) => x.id === id);
 
     //Condition that if the id is existing in the cart, adds the quantity to the cart.
     if (cartVal) {
@@ -74,6 +78,26 @@ export class HomePageComponent implements OnInit {
           payload: this.cartState,
         })
       );
+
+      //Updates products to subtract quantity
+      this.store.dispatch(
+        updateProducts({
+          payload: {
+            id: prodVal.id,
+            title: prodVal.title,
+            qty: prodVal.qty - qty,
+            price: prodVal.price,
+            img: prodVal.img,
+          },
+        })
+      );
+
+      // Sorts the product state by id
+      this.store.dispatch(
+        sortProducts({
+          payload: this.prodState,
+        })
+      );
     } else {
       //else, adds the entire product if its not in the cart.
       this.store.dispatch(
@@ -86,8 +110,30 @@ export class HomePageComponent implements OnInit {
           },
         })
       );
+
+      //Updates products to subtract quantity
+      this.store.dispatch(
+        updateProducts({
+          payload: {
+            id: prodVal.id,
+            title: prodVal.title,
+            qty: prodVal.qty - qty,
+            price: prodVal.price,
+            img: prodVal.img,
+          },
+        })
+      );
+
+      //Sorts prodState by id
+      this.store.dispatch(
+        sortProducts({
+          payload: this.prodState,
+        })
+      );
     }
   }
+
+  //--------------------------------------------------------------------------------------------
 
   reduceFromCart(index: number) {
     // Places the cart state in cartState
@@ -125,6 +171,7 @@ export class HomePageComponent implements OnInit {
         payload: this.cartState,
       })
     );
+
     //If reduced to the point where the quantity reaches 0, its deleted
     if (this.cartState[index].qty == 0) {
       this.store.dispatch(
@@ -137,12 +184,14 @@ export class HomePageComponent implements OnInit {
           },
         })
       );
+      // Places the cart state in cartState for sorting
       this.store
         .select((state: any) => state.cart)
         .subscribe((result: any) => {
           this.cartState = result;
         });
 
+      // Sorts the cart state by id
       this.store.dispatch(
         sortCart({
           payload: this.cartState,
