@@ -1,0 +1,5 @@
+<div style="margin: 30px">
+    <div style=" display: flex; overflow-x: auto;">
+        <app-product-card *ngFor="let product of prodState" [product]="product" (onAddProduct)="addToCart($event.id, $event.qty)"></app-product-card>
+    </div>
+</div>

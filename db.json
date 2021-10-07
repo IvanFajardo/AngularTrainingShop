@@ -1,0 +1,53 @@
+{
+    "products": [
+      {
+        "id":1,
+        "title":"Lamb",
+        "qty":3,
+        "price":100,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 2,
+        "title":"Sauce1",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 3,
+        "title":"Sauce",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 4,
+        "title":"Sauce",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 5,
+        "title":"Sauce",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 6,
+        "title":"Sauce",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      },
+      {
+        "id": 7,
+        "title":"Sauce",
+        "qty":10,
+        "price":50,
+        "img":"/assets/lambchops.jpg"
+      }
+    ]
+  }
