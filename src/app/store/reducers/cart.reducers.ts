@@ -1,6 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { Cart } from 'src/app/models/Cart';
-import { getCart, addToCart, updateCart } from '../actions/cart.actions';
+import {
+  getCart,
+  addToCart,
+  updateCart,
+  deleteFromCart,
+  sortCart,
+} from '../actions/cart.actions';
 
 export const initialState: ReadonlyArray<Cart> = [];
 
@@ -15,6 +21,18 @@ export const cartReducer = createReducer(
   }),
 
   on(updateCart, (state: any, { payload }) => {
-    return [...state.filter((user: any) => user.id !== payload.id), payload];
+    return [...state.filter((cart: any) => cart.id !== payload.id), payload];
+  }),
+
+  on(deleteFromCart, (state: any, { payload }) => {
+    return [...state.filter((cart: any) => cart.id !== payload.id)];
+  }),
+
+  on(sortCart, (state: any, { payload }) => {
+    return state.slice().sort(function (a: any, b: any) {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      return 0;
+    });
   })
 );
