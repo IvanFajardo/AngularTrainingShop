@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/selectors/selectors';
 import * as fromActions from '../../store/actions'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class HeaderComponent implements OnInit {
   @Input()
-  cartItems: number = 15;
-  cart = [
+  cartItems: number = 0;
+  cart!: Observable<any[]> 
     // {
     //   item:"H&M Basics: Slim-fit White T-shirt",
     //   qty:1,
@@ -26,7 +27,7 @@ export class HeaderComponent implements OnInit {
     //   price:50,
     //   img:'assets/img/black-tshirt.jpg'
     // },
-  ]
+  
   bsModalRef!: BsModalRef;
   constructor(private store: Store<AppState>, private router: Router, private modalService: BsModalService) {}
 
