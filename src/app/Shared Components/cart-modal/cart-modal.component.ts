@@ -12,12 +12,19 @@ export class CartModalComponent implements OnInit {
   add: EventEmitter<number> = new EventEmitter<number>();
   @Output()
   reduce: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  checkout: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  remove: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(private modalService: BsModalService) {}
 
   ngOnInit(): void {}
 
   doCheckout() {
     //checkout
+    console.log('checkout');
+    this.checkout.emit()
   }
 
   doClose() {
@@ -25,10 +32,16 @@ export class CartModalComponent implements OnInit {
   }
 
   addQuantity(index: number) {
-    
+    console.log('add', index);
+    this.add.emit(index)
   }
 
   reduceQuantity(index: number) {
+    console.log('reduce', index);
+    this.reduce.emit(index)
+  }
 
+  removeFromCart(index: number) {
+    this.remove.emit(index)
   }
 }

@@ -1,3 +1,5 @@
+
+
 .empty {
   color: rgb(182, 180, 180)
 }
@@ -10,12 +12,16 @@ img {
 }
 
 .td-img {
-  padding: 4px;
-  margin: 4px;
+  padding: 4px 4px 4px 0px;
 }
 
-td:nth-child(2) {
+td:nth-child(3) {
   font-size: 18px;
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+  padding-left: 2em;
 }
 
 .modal-body {
@@ -38,4 +44,8 @@ td:nth-child(2) {
 input {
   padding: 0;
   font-size: 14px;
+}
+
+.fas {
+  color: rgb(179, 179, 179);
 }
