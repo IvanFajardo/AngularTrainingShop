@@ -10,7 +10,7 @@ import {
 
 export const initialState: ReadonlyArray<Cart> = [];
 
-export const cartReducer = createReducer(
+export const _cartReducer = createReducer(
   initialState,
   on(getCart, (state: any, { payload }) => {
     return [...payload];
@@ -36,3 +36,7 @@ export const cartReducer = createReducer(
     });
   })
 );
+
+export function cartReducer(state: any, action: any) {
+  return _cartReducer(state, action);
+}

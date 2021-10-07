@@ -36,5 +36,17 @@
         "img":"/assets/jollibee.jpg"
       }
      
-    ]
-  }
+    ],
+  "users": [
+    {
+      "id":1,
+      "username":"lebron",
+      "password":"123"
+    },
+    {
+      "id":2,
+      "username":"lebron2",
+      "password":"123"
+    }
+  ]
+}
