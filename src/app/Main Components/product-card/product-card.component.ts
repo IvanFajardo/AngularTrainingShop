@@ -9,7 +9,7 @@ import { Product } from 'src/app/models/Product';
 export class ProductCardComponent implements OnInit {
   @Input() product!: Product;
   @Output() onAddProduct: EventEmitter<any> = new EventEmitter();
-  custQty: number = 1;
+  custQty: number = 0;
   constructor() {}
 
   ngOnInit(): void {}
