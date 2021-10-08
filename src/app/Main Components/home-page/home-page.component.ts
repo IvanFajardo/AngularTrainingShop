@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/models/Product';
 import { Cart } from 'src/app/models/Cart';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import {
   getProducts,
   updateProducts,
@@ -20,11 +21,27 @@ import db from '../../../../db.json';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
   prodState: any;
   cartState: any;
+  prodSubscription?: Subscription;
+  cartSubscription?: Subscription;
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(private router: Router, private store: Store) {
+    // Places the products state in prodState
+    this.prodSubscription = this.store
+      .select((state: any) => state.products)
+      .subscribe((result: any) => {
+        this.prodState = result;
+      });
+
+    // Places the cart state in cartState
+    this.prodSubscription = this.store
+      .select((state: any) => state.cart)
+      .subscribe((result: any) => {
+        this.cartState = result;
+      });
+  }
 
   ngOnInit(): void {
     //Get the products from db.json
@@ -33,23 +50,14 @@ export class HomePageComponent implements OnInit {
         payload: db.products,
       })
     );
+  }
 
-    // Places the products state in prodState
-    this.store
-      .select((state: any) => state.products)
-      .subscribe((result: any) => {
-        this.prodState = result;
-      });
+  ngOnDestroy(): void {
+    this.prodSubscription?.unsubscribe;
+    this.cartSubscription?.unsubscribe;
   }
 
   addToCart(id: number, qty: number) {
-    // Places the cart state in cartState
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe((result: any) => {
-        this.cartState = result;
-      });
-
     //Variable declarations to retrieve the values in prodVal and cartVal given the id of the product
     let prodVal = this.prodState.find((x: { id: number }) => x.id === id);
     let cartVal = this.cartState.find((x: { id: number }) => x.id === id);
@@ -66,12 +74,7 @@ export class HomePageComponent implements OnInit {
           },
         })
       );
-      // Places the cart state in cartState for sorting
-      this.store
-        .select((state: any) => state.cart)
-        .subscribe((result: any) => {
-          this.cartState = result;
-        });
+
       // Sorts the cart state by id
       this.store.dispatch(
         sortCart({
@@ -111,23 +114,10 @@ export class HomePageComponent implements OnInit {
         })
       );
 
-      //Updates products to subtract quantity
+      // Sorts the cart state by id
       this.store.dispatch(
-        updateProducts({
-          payload: {
-            id: prodVal.id,
-            title: prodVal.title,
-            qty: prodVal.qty - qty,
-            price: prodVal.price,
-            img: prodVal.img,
-          },
-        })
-      );
-
-      //Sorts prodState by id
-      this.store.dispatch(
-        sortProducts({
-          payload: this.prodState,
+        sortCart({
+          payload: this.cartState,
         })
       );
     }
@@ -136,13 +126,6 @@ export class HomePageComponent implements OnInit {
   //--------------------------------------------------------------------------------------------
 
   reduceFromCart(index: number) {
-    // Places the cart state in cartState
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe((result: any) => {
-        this.cartState = result;
-      });
-
     let prodVal = this.prodState.find(
       (x: { id: number }) => x.id === this.cartState[index].id
     );
@@ -157,13 +140,6 @@ export class HomePageComponent implements OnInit {
         },
       })
     );
-
-    // Places the cart state in cartState for sorting
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe((result: any) => {
-        this.cartState = result;
-      });
 
     // Sorts the cart state by id
     this.store.dispatch(
@@ -184,12 +160,6 @@ export class HomePageComponent implements OnInit {
           },
         })
       );
-      // Places the cart state in cartState for sorting
-      this.store
-        .select((state: any) => state.cart)
-        .subscribe((result: any) => {
-          this.cartState = result;
-        });
 
       // Sorts the cart state by id
       this.store.dispatch(
