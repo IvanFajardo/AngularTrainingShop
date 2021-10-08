@@ -15,6 +15,7 @@ import { UserEffects } from './store/effects/user.effects';
 import { environment } from 'src/environments/environment';
 import { productReducer } from './store/reducers/product.reducers';
 import { cartReducer } from './store/reducers/cart.reducers';
+import { ConfirmationPageComponent } from './Main Components/confirmation-page/confirmation-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { cartReducer } from './store/reducers/cart.reducers';
     LoginPageComponent,
     HomePageComponent,
     ProductCardComponent,
+    ConfirmationPageComponent,
   ],
   imports: [
     BrowserModule,

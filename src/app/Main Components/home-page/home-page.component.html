@@ -1,8 +1,8 @@
-<div style="margin: 30px">
-    <div style=" display: flex; overflow-x: auto;">
+<div class="container-fluid">
+    <div class=" row" style=" display: flex; flex-wrap: wrap">
         <app-product-card *ngFor="let product of prodState" [product]="product" (onAddProduct)="addToCart($event.id, $event.qty)"></app-product-card>
     </div>
 </div>
 
 <!-- Uncomment to test the reduceFromCart function (Will reduce from index 0) -->
- <!-- <button type="button" class="btn btn-success btn-sm" (click)="reduceFromCart(0)">Reduce from cart</button>  -->
+ <button type="button" class="btn btn-success btn-sm" (click)="checkout()">Reduce from cart</button> 

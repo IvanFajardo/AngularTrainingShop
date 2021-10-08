@@ -40,16 +40,16 @@ export class HomePageComponent implements OnInit {
       .subscribe((result: any) => {
         this.prodState = result;
       });
-  }
 
-  addToCart(id: number, qty: number) {
     // Places the cart state in cartState
     this.store
       .select((state: any) => state.cart)
       .subscribe((result: any) => {
         this.cartState = result;
       });
+  }
 
+  addToCart(id: number, qty: number) {
     //Variable declarations to retrieve the values in prodVal and cartVal given the id of the product
     let prodVal = this.prodState.find((x: { id: number }) => x.id === id);
     let cartVal = this.cartState.find((x: { id: number }) => x.id === id);
@@ -66,12 +66,6 @@ export class HomePageComponent implements OnInit {
           },
         })
       );
-      // Places the cart state in cartState for sorting
-      this.store
-        .select((state: any) => state.cart)
-        .subscribe((result: any) => {
-          this.cartState = result;
-        });
       // Sorts the cart state by id
       this.store.dispatch(
         sortCart({
@@ -136,13 +130,6 @@ export class HomePageComponent implements OnInit {
   //--------------------------------------------------------------------------------------------
 
   reduceFromCart(index: number) {
-    // Places the cart state in cartState
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe((result: any) => {
-        this.cartState = result;
-      });
-
     let prodVal = this.prodState.find(
       (x: { id: number }) => x.id === this.cartState[index].id
     );
@@ -157,13 +144,6 @@ export class HomePageComponent implements OnInit {
         },
       })
     );
-
-    // Places the cart state in cartState for sorting
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe((result: any) => {
-        this.cartState = result;
-      });
 
     // Sorts the cart state by id
     this.store.dispatch(
@@ -185,11 +165,6 @@ export class HomePageComponent implements OnInit {
         })
       );
       // Places the cart state in cartState for sorting
-      this.store
-        .select((state: any) => state.cart)
-        .subscribe((result: any) => {
-          this.cartState = result;
-        });
 
       // Sorts the cart state by id
       this.store.dispatch(
