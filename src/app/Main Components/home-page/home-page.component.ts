@@ -81,26 +81,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
           payload: this.cartState,
         })
       );
-
-      //Updates products to subtract quantity
-      this.store.dispatch(
-        updateProducts({
-          payload: {
-            id: prodVal.id,
-            title: prodVal.title,
-            qty: prodVal.qty - qty,
-            price: prodVal.price,
-            img: prodVal.img,
-          },
-        })
-      );
-
-      // Sorts the product state by id
-      this.store.dispatch(
-        sortProducts({
-          payload: this.prodState,
-        })
-      );
     } else {
       //else, adds the entire product if its not in the cart.
       this.store.dispatch(
