@@ -26,7 +26,7 @@ export class HeaderComponent {
     this.cartSubscription = this.store
       .select((state: any) => state.cart)
       .subscribe((data: any) => {
-        this.cartState = data;
+        this.cartState = data.filter((product: Product) => product.qty > 0);
       });
   }
 
