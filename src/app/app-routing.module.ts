@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './Main Components/login-page/login-page.component';
+import { HomePageComponent } from './Main Components/home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: LoginPageComponent, //replace component
+    component: HomePageComponent,
+  },
+  {
+    path: 'confirmation',
+    component: HomePageComponent, //ConfirmationPage Component
   },
 ];
 
