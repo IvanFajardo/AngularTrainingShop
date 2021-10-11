@@ -19,6 +19,11 @@ td:nth-child(3) {
   font-size: 18px;
 }
 
+th:nth-child(3),
+td:nth-child(3) {
+  padding-left: 2rem;
+}
+
 th:nth-child(6),
 td:nth-child(6) {
   padding-left: 2em;

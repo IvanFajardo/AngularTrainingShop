@@ -32,30 +32,33 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of cart">
-        <td class="y-middle text-center">
-          <button type="button" class="btn" [style.backgroundColor]="'transparent'" (click)="removeFromCart(item.id)">
-            <i class="fas fa-times"></i>
-          </button>
-        </td>
-        <td class="td-img"><img [src]="item.img"></td>
-        <td class="y-middle">{{item.title}}</td>
-        <td class="y-middle">
-          <h5>{{item.price | currency:"PHP":"symbol"}}</h5>
-        </td>
-        <td class="text-center y-middle">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button class="btn btn-default input-lg" type="submit" (click)="reduceQuantity(item.id)">-</button>
-            </span>
-            <input type="text" class="form-control input-lg text-center" value="{{item.qty}}" min="1">
-            <span class="input-group-btn">
-              <button class="btn btn-default input-lg" type="submit" (click)="addQuantity(item.id)">+</button>
-            </span>
-          </div>
-        </td>
-        <td class="y-middle">{{item.qty * item.price | currency:"PHP":"symbol"}}</td>
-      </tr>
+      <ng-container *ngFor="let item of cart">
+        <tr *ngIf="item.qty>0">
+          <td class="y-middle text-center">
+            <button type="button" class="btn" [style.backgroundColor]="'transparent'" (click)="removeFromCart(item.id)">
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
+          <td class="td-img"><img [src]="item.img"></td>
+          <td class="y-middle">{{item.title}}</td>
+          <td class="y-middle">
+            <h5>{{item.price | currency:"PHP":"symbol"}}</h5>
+          </td>
+          <td class="text-center y-middle">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-default input-lg" type="submit" (click)="reduceQuantity(item.id)">-</button>
+              </span>
+              <input type="text" class="form-control input-lg text-center" value="{{item.qty}}" min="1">
+              <span class="input-group-btn">
+                <button class="btn btn-default input-lg" type="submit" (click)="addQuantity(item.id)">+</button>
+              </span>
+            </div>
+          </td>
+          <td class="y-middle">{{item.qty * item.price | currency:"PHP":"symbol"}}</td>
+        </tr>
+      </ng-container>
+
     </tbody>
   </table>
 </div>
