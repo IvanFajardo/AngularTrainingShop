@@ -29,7 +29,7 @@ import { metaReducers } from './store/metareducers/logout.metareducer';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(fromReducers.reducers),
+    StoreModule.forRoot(fromReducers.reducers,  { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
@@ -39,7 +39,6 @@ import { metaReducers } from './store/metareducers/logout.metareducer';
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
-    StoreModule.forRoot(fromReducers.reducers, { metaReducers })
   ],
   providers: [],
   bootstrap: [AppComponent],

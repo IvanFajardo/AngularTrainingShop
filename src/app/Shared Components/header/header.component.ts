@@ -27,6 +27,8 @@ export class HeaderComponent {
       .select((state: any) => state.cart)
       .subscribe((data: any) => {
         this.cartState = data.filter((product: Product) => product.qty > 0);
+        console.log(this.cartState);
+        
       });
   }
 
@@ -53,7 +55,7 @@ export class HeaderComponent {
 
   //clears the user and cart state and navigates to login
   logout() {
-    this.store.dispatch(fromActions.CLEAR_USER_STATE());
+    this.store.dispatch(fromActions.clearUserState());
     this.router.navigate(['login']);
   }
 }

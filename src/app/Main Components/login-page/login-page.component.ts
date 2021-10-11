@@ -54,7 +54,7 @@ export class LoginPageComponent implements OnInit {
       return null;
     }
     if (user?.password == form.value.password) {
-      this.store.dispatch(fromActions.SAVE_USER_STATE({ user: user as User }));
+      this.store.dispatch(fromActions.saveUserState({ user: user as User }));
       console.log('logged in!');
       this.navigateTo();
     } else {
