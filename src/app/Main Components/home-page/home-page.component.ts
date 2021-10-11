@@ -36,7 +36,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
       });
 
     // Places the cart state in cartState
-    this.prodSubscription = this.store
+    this.cartSubscription = this.store
       .select((state: any) => state.cart)
       .subscribe((result: any) => {
         this.cartState = result;
@@ -53,8 +53,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.prodSubscription?.unsubscribe;
-    this.cartSubscription?.unsubscribe;
+    this.prodSubscription?.unsubscribe();
+    this.cartSubscription?.unsubscribe();
   }
 
   addToCart(id: number, qty: number) {
