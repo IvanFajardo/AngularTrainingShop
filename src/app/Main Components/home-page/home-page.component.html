@@ -1,8 +1,7 @@
-<div class="container-fluid">
-    <div class=" row" style=" display: flex; flex-wrap: wrap">
+
+<div class="container-fluid" >
+    <div class="row" style="margin: auto; margin-top: 10px;" >
         <app-product-card *ngFor="let product of prodState" [product]="product" (onAddProduct)="addToCart($event.id, $event.qty)"></app-product-card>
     </div>
 </div>
 
-<!-- Uncomment to test the reduceFromCart function (Will reduce from index 0) -->
- <button type="button" class="btn btn-success btn-sm" (click)="checkout()">Reduce from cart</button> 
