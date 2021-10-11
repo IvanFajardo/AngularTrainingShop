@@ -1,40 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/selectors/selectors';
-import * as fromActions from '../../store/actions'
+import * as fromActions from '../../store/actions';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { Product } from 'src/app/models/Product';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input()
-  cartItems: number = 0;
-  cart!: Observable<any[]> 
-    // {
-    //   item:"H&M Basics: Slim-fit White T-shirt",
-    //   qty:1,
-    //   price:100,
-    //   img:'assets/img/white-tshirt.jpg'
-    // },
-    // {
-    //   item:"H&M Basics: Slim-fit Black T-shirt",
-    //   qty:1,
-    //   price:50,
-    //   img:'assets/img/black-tshirt.jpg'
-    // },
-  
-  bsModalRef!: BsModalRef;
-  constructor(private store: Store<AppState>, private router: Router, private modalService: BsModalService) {}
+  cartSubscription!: Subscription;
+  cartState: Product[] = [];
 
-  ngOnInit() {
-    // this.cartItems = this.sum(this.cart, 'qty')
+  bsModalRef!: BsModalRef;
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private modalService: BsModalService
+  ) {
+    this.cartSubscription = this.store
+      .select((state: any) => state.cart)
+      .subscribe((data: any) => {
+        this.cartState = data;
+      });
   }
 
+  ngOnDestroy() {
+    this.cartSubscription?.unsubscribe();
+  }
+
+  //array of objects helper
+  //finds the sum of a property of an object
   sum(arr: any[], key: string | number) {
     return arr.reduce((a, b) => a + (b[key] || 0), 0);
   }
@@ -50,8 +51,9 @@ export class HeaderComponent implements OnInit {
     // });
   }
 
+  //clears the user and cart state and navigates to login
   logout() {
-    this.store.dispatch(fromActions.CLEAR_USER_STATE())
-    this.router.navigate(['login'])
+    this.store.dispatch(fromActions.CLEAR_USER_STATE());
+    this.router.navigate(['login']);
   }
 }

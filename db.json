@@ -1,4 +1,42 @@
 {
+    "products": [
+      {
+        "id":1,
+        "title":"Naruto Funkopop",
+        "qty":3,
+        "price":100,
+        "img":"/assets/naruto.jpg"
+      },
+      {
+        "id": 2,
+        "title":"Iron Man Funkopop",
+        "qty":10,
+        "price":50,
+        "img":"/assets/ironman.jpg"
+      },
+      {
+        "id": 3,
+        "title":"Pikachu Funkopop",
+        "qty":10,
+        "price":50,
+        "img":"/assets/pikachu.jpg"
+      },
+      {
+        "id": 4,
+        "title":"John Wick Funkopop",
+        "qty":10,
+        "price":50,
+        "img":"/assets/johnwick.jpg"
+      },
+      {
+        "id": 5,
+        "title":"Jollibee",
+        "qty":10,
+        "price":50,
+        "img":"/assets/jollibee.jpg"
+      }
+     
+    ],
   "users": [
     {
       "id":1,
