@@ -1,0 +1,34 @@
+<div class="panel panel-default" style="width: 80%; margin:0 auto;margin-top: 20px; padding: 20px;">
+    <h2><p>Confirmation:</p></h2>
+<table class="table table-condensed" style="font-size: larger; margin-top: 20px;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Pop Figure</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total Price</th>      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cart of cartState ">
+        <th scope="row">{{ cart.title}}</th>
+        <td>{{ cart.qty}}</td>
+        <td>Php {{ cart.price/cart.qty}}</td>
+        <td>Php {{ cart.price}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Total</th>
+        <td></td>
+        <td></td>
+        <td>Php {{ sTotal}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top: 20px;">
+<button type="button" class="btn btn-secondary" (click)="doBack()">Back</button>
+<button type="button" class="btn btn-success" (click)="doSubmit()" style="float: right;">Submit</button>
+</div>
+</div>
+
+
+
