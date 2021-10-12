@@ -76,7 +76,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
           },
         })
       );
-
       // Sorts the cart state by id
       this.store.dispatch(
         sortCart({
