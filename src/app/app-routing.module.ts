@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './Shared Components/header/header.component';
-import { LoginComponent } from './Main Components/login-page/login.component';
+import { LoginPageComponent } from './Main Components/login-page/login-page.component';
+import { HomePageComponent } from './Main Components/home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
   },
   {
     path: 'home',
-    component: HeaderComponent, //replace component
+    component: HomePageComponent,
+  },
+  {
+    path: 'confirmation',
+    component: HomePageComponent, //ConfirmationPage Component
   },
 ];
 
