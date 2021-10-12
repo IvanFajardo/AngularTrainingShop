@@ -12,12 +12,19 @@ export const initialState: UserState = {
 
 export const _userReducer = createReducer(
   initialState,
-  on(fromActions.SAVE_USER_STATE, (state, { user }) => {
+  on(fromActions.saveUserState, (state, { user }) => {
     sessionStorage.setItem('user', JSON.stringify(user));
     return {
       ...state,
       user,
     };
+  }),
+  on(fromActions.clearUserState, (state) => {
+    sessionStorage.removeItem('user')
+    return {
+      ...state,
+      user:null
+    }
   })
 );
 

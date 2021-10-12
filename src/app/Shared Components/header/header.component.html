@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" [routerLink]="'/home'">FunkoShop!</a>
+  </div>
+  <div class="pull-right col-center">
+    <div class="cart">
+      <button class="glyphicon glyphicon-shopping-cart reverse" (click)="openCart()"></button>
+      <span [style.visibility]="cartState.length === 0 ? 'hidden':'visible'"
+        class="cart-number">{{cartState.length}}</span>
+    </div>
+    <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+</nav>

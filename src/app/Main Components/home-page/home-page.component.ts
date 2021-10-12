@@ -62,6 +62,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
     let prodVal = this.prodState.find((x: { id: number }) => x.id === id);
     let cartVal = this.cartState.find((x: { id: number }) => x.id === id);
 
+    if(qty <= 0) return;
+    
     //Condition that if the id is existing in the cart, adds the quantity to the cart.
     if (cartVal) {
       this.store.dispatch(
