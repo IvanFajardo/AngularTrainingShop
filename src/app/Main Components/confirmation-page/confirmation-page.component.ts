@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import {
   getProducts,
   updateProducts,
@@ -11,27 +12,35 @@ import {
   templateUrl: './confirmation-page.component.html',
   styleUrls: ['./confirmation-page.component.css'],
 })
-export class ConfirmationPageComponent implements OnInit {
+export class ConfirmationPageComponent implements OnInit, OnDestroy {
   cartState: any;
   prodState: any;
+  prodSubscription?: Subscription;
+  cartSubscription?: Subscription;
   sTotal: number = 0;
 
   constructor(private router: Router, private store: Store) {
-    this.store
+    this.prodSubscription = this.store
       .select((state: any) => state.products)
       .subscribe((result: any) => {
         this.prodState = result;
       });
-  }
 
-  ngOnInit(): void {
-    this.store
+    // Places the cart state in cartState
+    this.cartSubscription = this.store
       .select((state: any) => state.cart)
       .subscribe((result: any) => {
         this.cartState = result;
       });
+  }
 
+  ngOnInit(): void {
     this.sTotal = this.sumTotal(this.cartState, 'price');
+  }
+
+  ngOnDestroy(): void {
+    this.prodSubscription?.unsubscribe();
+    this.cartSubscription?.unsubscribe();
   }
 
   sumTotal(cart: any, prop: any) {
