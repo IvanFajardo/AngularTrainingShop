@@ -7,6 +7,8 @@ import {
   updateProducts,
   sortProducts,
 } from 'src/app/store/actions/product.actions';
+
+import { clearCart } from 'src/app/store/actions';
 @Component({
   selector: 'app-confirmation-page',
   templateUrl: './confirmation-page.component.html',
@@ -74,6 +76,11 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
       })
     );
 
+    this.store.dispatch(
+      clearCart({
+        payload: this.cartState,
+      })
+    );
     this.router.navigate(['home']);
   }
 
