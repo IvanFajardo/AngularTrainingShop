@@ -16,6 +16,7 @@ import { ProductCardComponent } from './Main Components/product-card/product-car
 import { HeaderComponent } from './Shared Components/header/header.component';
 import { UserEffects } from './store/effects/user.effects';
 import { metaReducers } from './store/metareducers/logout.metareducer';
+import { CartModalComponent } from './Shared Components/cart-modal/cart-modal.component';
 import * as fromReducers from './store/reducers/reducers';
 
 @NgModule({
@@ -25,6 +26,7 @@ import * as fromReducers from './store/reducers/reducers';
     HeaderComponent,
     HomePageComponent,
     ProductCardComponent,
+    CartModalComponent,
     ConfirmationPageComponent,
   ],
   imports: [

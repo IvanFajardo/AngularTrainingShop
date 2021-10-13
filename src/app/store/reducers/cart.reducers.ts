@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Cart } from 'src/app/models/Cart';
+import { Product } from 'src/app/models/Product';
 import {
   getCart,
   addToCart,
@@ -8,7 +8,7 @@ import {
   sortCart,
 } from '../actions/cart.actions';
 
-export const initialState: ReadonlyArray<Cart> = [];
+export const initialState: ReadonlyArray<Product> = [];
 
 export const _cartReducer = createReducer(
   initialState,

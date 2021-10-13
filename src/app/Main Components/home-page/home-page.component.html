@@ -1,5 +1,9 @@
 
-<app-header></app-header>
+<app-header
+(add)="addToCart($event,1)"
+(reduce)="reduceFromCart($event)"
+(remove)="removeFromCart($event)"
+></app-header>
 <div class="container-fluid" >
     <div class="row" style="margin: auto; margin-top: 10px;" >
         <app-product-card *ngFor="let product of prodState" [product]="product" (onAddProduct)="addToCart($event.id, $event.qty)"></app-product-card>
