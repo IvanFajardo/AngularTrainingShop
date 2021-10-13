@@ -9,6 +9,3 @@
         <app-product-card *ngFor="let product of prodState" [product]="product" (onAddProduct)="addToCart($event.id, $event.qty)"></app-product-card>
     </div>
 </div>
-
-<!-- Uncomment to test the checkout() function (Will reduce from index 0) -->
- <!-- <button type="button" class="btn btn-success btn-sm" (click)="checkout()">Test Confirmation Page</button>  -->
