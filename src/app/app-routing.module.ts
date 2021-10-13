@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './Shared Components/header/header.component';
 import { LoginPageComponent } from './Main Components/login-page/login-page.component';
 import { HomePageComponent } from './Main Components/home-page/home-page.component';
+import { ConfirmationPageComponent } from './Main Components/confirmation-page/confirmation-page.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'confirmation',
-    component: HomePageComponent, //ConfirmationPage Component
+    component: ConfirmationPageComponent, //ConfirmationPage Component
   },
 ];
 

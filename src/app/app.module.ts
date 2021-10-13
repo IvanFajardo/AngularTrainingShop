@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { LoginPageComponent } from './Main Components/login-page/login-page.component';
-import { HomePageComponent } from './Main Components/home-page/home-page.component';
-import { ProductCardComponent } from './Main Components/product-card/product-card.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { EffectsModule } from '@ngrx/effects';
-import * as fromReducers from './store/reducers/reducers';
-import { UserEffects } from './store/effects/user.effects';
-import { environment } from 'src/environments/environment';
-import { HeaderComponent } from './Shared Components/header/header.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ConfirmationPageComponent } from './Main Components/confirmation-page/confirmation-page.component';
+import { HomePageComponent } from './Main Components/home-page/home-page.component';
+import { LoginPageComponent } from './Main Components/login-page/login-page.component';
+import { ProductCardComponent } from './Main Components/product-card/product-card.component';
+import { HeaderComponent } from './Shared Components/header/header.component';
+import { UserEffects } from './store/effects/user.effects';
 import { metaReducers } from './store/metareducers/logout.metareducer';
 import { CartModalComponent } from './Shared Components/cart-modal/cart-modal.component';
+import * as fromReducers from './store/reducers/reducers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { CartModalComponent } from './Shared Components/cart-modal/cart-modal.co
     HeaderComponent,
     HomePageComponent,
     ProductCardComponent,
-    CartModalComponent
+    CartModalComponent,
+    ConfirmationPageComponent,
   ],
   imports: [
     BrowserModule,
