@@ -21,27 +21,35 @@ export class CartModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //navigates to checkout page
   doCheckout() {
     //checkout
-    console.log('checkout');
     this.checkout.emit()
   }
 
+  //closes the modal
   doClose() {
     this.modalService.hide();
   }
 
+  //adds 1 to quantity of product
+  //index:number = id of product
   addQuantity(index: number) {
-    console.log('add', index);
     this.add.emit(index)
+    this.cart = this.cart.map(data => data.id === index ? {...data, qty: data.qty + 1} : data)
   }
 
+  //reduces quantity of product by 1
+  //index:number = id of product
   reduceQuantity(index: number) {
-    console.log('reduce', index);
     this.reduce.emit(index)
+    this.cart = this.cart.map(data => data.id === index ? {...data, qty: data.qty - 1} : data)
   }
 
+  //deletes product from cart
   removeFromCart(index: number) {
     this.remove.emit(index)
+    this.cart = this.cart.filter(data => data.id !== index)
+
   }
 }

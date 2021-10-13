@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/selectors/selectors';
@@ -6,6 +6,7 @@ import * as fromActions from '../../store/actions';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/Product';
+import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,13 @@ export class HeaderComponent {
   cartState: Product[] = [];
 
   bsModalRef!: BsModalRef;
+
+  @Output()
+  add: EventEmitter<number> = new EventEmitter<number>()
+  @Output()
+  reduce: EventEmitter<number> = new EventEmitter<number>()
+  @Output()
+  remove: EventEmitter<number> = new EventEmitter<number>()
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -34,6 +42,9 @@ export class HeaderComponent {
 
   ngOnDestroy() {
     this.cartSubscription?.unsubscribe();
+    this.bsModalRef.content.add?.unsubscribe();
+    this.bsModalRef.content.reduce?.unsubscribe();
+    this.bsModalRef.content.remove?.unsubscribe();
   }
 
   //array of objects helper
@@ -44,13 +55,18 @@ export class HeaderComponent {
 
   openCart() {
     //opens the cart modal
-    // this.bsModalRef = this.modalService.show(CartModalComponent, {
-    //   animated: true,
-    //   class:'modal-lg',
-    //   initialState:{
-    //     cart:this.cart
-    //   }
-    // });
+    this.bsModalRef = this.modalService.show(CartModalComponent, {
+      animated: true,
+      class:'modal-lg',
+      initialState:{
+        cart:this.cartState
+      }
+    });
+
+    this.bsModalRef.content.add.subscribe((res:any) => this.add.emit(res))
+    this.bsModalRef.content.reduce.subscribe((res:any) => this.reduce.emit(res))
+    this.bsModalRef.content.remove.subscribe((res:any) => this.remove.emit(res))
+    this.bsModalRef.content.checkout.subscribe((res:any) => this.router.navigate(['checkout']))
   }
 
   //clears the user and cart state and navigates to login

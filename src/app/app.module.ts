@@ -17,6 +17,7 @@ import { HeaderComponent } from './Shared Components/header/header.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { metaReducers } from './store/metareducers/logout.metareducer';
+import { CartModalComponent } from './Shared Components/cart-modal/cart-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { metaReducers } from './store/metareducers/logout.metareducer';
     HeaderComponent,
     HomePageComponent,
     ProductCardComponent,
+    CartModalComponent
   ],
   imports: [
     BrowserModule,
