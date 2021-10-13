@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/models/Product';
-import { Cart } from 'src/app/models/Cart';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
@@ -73,6 +72,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: +cartVal.qty + +qty,
             price: prodVal.price * (+cartVal.qty + +qty),
+            img: cartVal.img
           },
         })
       );
@@ -91,6 +91,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: prodVal.title,
             qty: qty,
             price: prodVal.price * qty,
+            img: prodVal.img
           },
         })
       );
@@ -121,6 +122,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: cartVal.qty,
             price: cartVal.price,
+            img: cartVal.img
           },
         })
       );
@@ -132,6 +134,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: cartVal.qty - 1,
             price: prodVal.price * (cartVal.qty - 1),
+            img:cartVal.img
           },
         })
       );
@@ -153,6 +156,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
           title: cartVal.title,
           qty: cartVal.qty,
           price: cartVal.price,
+          img: cartVal.img
         },
       })
     );

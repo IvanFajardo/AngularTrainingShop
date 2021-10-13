@@ -40,11 +40,15 @@ export class HeaderComponent {
       });
   }
 
+  cartIsDisabled() {
+    return this.router.url === '/confirmation'
+  }
+
   ngOnDestroy() {
     this.cartSubscription?.unsubscribe();
-    this.bsModalRef.content.add?.unsubscribe();
-    this.bsModalRef.content.reduce?.unsubscribe();
-    this.bsModalRef.content.remove?.unsubscribe();
+    this.bsModalRef?.content.add.unsubscribe();
+    this.bsModalRef?.content.reduce.unsubscribe();
+    this.bsModalRef?.content.remove.unsubscribe();
   }
 
   //array of objects helper
@@ -66,7 +70,11 @@ export class HeaderComponent {
     this.bsModalRef.content.add.subscribe((res:any) => this.add.emit(res))
     this.bsModalRef.content.reduce.subscribe((res:any) => this.reduce.emit(res))
     this.bsModalRef.content.remove.subscribe((res:any) => this.remove.emit(res))
-    this.bsModalRef.content.checkout.subscribe((res:any) => this.router.navigate(['checkout']))
+    this.bsModalRef.content.checkout.subscribe((res:any) => 
+    {
+      this.router.navigate(['confirmation'])
+      this.bsModalRef.hide()
+  })
   }
 
   //clears the user and cart state and navigates to login

@@ -50,6 +50,6 @@ export class CartModalComponent implements OnInit {
   removeFromCart(index: number) {
     this.remove.emit(index)
     this.cart = this.cart.filter(data => data.id !== index)
-
+    
   }
 }
