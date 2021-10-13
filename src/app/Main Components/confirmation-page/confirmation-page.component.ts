@@ -73,6 +73,8 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
         payload: this.prodState,
       })
     );
+
+    this.router.navigate(['home']);
   }
 
   doBack() {

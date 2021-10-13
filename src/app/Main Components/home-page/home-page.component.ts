@@ -44,11 +44,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Get the products from db.json
-    this.store.dispatch(
-      getProducts({
-        payload: db.products,
-      })
-    );
+    if (!this.prodState.length) {
+      this.store.dispatch(
+        getProducts({
+          payload: db.products,
+        })
+      );
+    }
   }
 
   ngOnDestroy(): void {
@@ -72,7 +74,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: +cartVal.qty + +qty,
             price: prodVal.price * (+cartVal.qty + +qty),
-            img: cartVal.img
+            img: cartVal.img,
           },
         })
       );
@@ -91,7 +93,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: prodVal.title,
             qty: qty,
             price: prodVal.price * qty,
-            img: prodVal.img
+            img: prodVal.img,
           },
         })
       );
@@ -122,7 +124,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: cartVal.qty,
             price: cartVal.price,
-            img: cartVal.img
+            img: cartVal.img,
           },
         })
       );
@@ -134,7 +136,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
             title: cartVal.title,
             qty: cartVal.qty - 1,
             price: prodVal.price * (cartVal.qty - 1),
-            img:cartVal.img
+            img: cartVal.img,
           },
         })
       );
@@ -147,7 +149,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     );
   }
 
-  removeFromCart(index:number) {
+  removeFromCart(index: number) {
     let cartVal = this.cartState.find((x: { id: number }) => x.id === index);
     this.store.dispatch(
       deleteFromCart({
@@ -156,7 +158,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
           title: cartVal.title,
           qty: cartVal.qty,
           price: cartVal.price,
-          img: cartVal.img
+          img: cartVal.img,
         },
       })
     );
